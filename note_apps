@@ -1,5 +1,168 @@
 Connection DB postgres : 
-Host    : localhost
-user    : postgres
-pass    : @C4k_7ud
-DB      : arenaku 
+    Host    : localhost
+    user    : postgres
+    pass    : @C4k_7ud
+    DB      : arenaku 
+
+Konfigurasi Git (jika belum)
+    git config --global user.name "eyprasetya"
+    git config --global user.email "ey.prasetya@gmail.com"
+
+Repository Lokal dengan GitHub
+    git branch -M main
+    git remote add origin https://github.com/eyprasetya/arenaku.git
+    git push -u origin main
+
+=====================================
+APLIKASI BOOKING LAPANGAN BADMINTON
+=====================================
+
+✅ DATABASE STRUCTURE:
+- Courts table (lapangan)
+- TimeSlots table (slot waktu per jam)
+- Bookings table (pemesanan)
+- Payments table (pembayaran)
+
+✅ BACKEND STRUCTURE:
+- Models: Court, TimeSlot, Booking, Payment
+- Controllers: CourtController, BookingController, PaymentController
+- Policies: BookingPolicy, PaymentPolicy
+- API Routes (protected & public)
+- Seeders: CourtsTableSeeder
+
+✅ FRONTEND COMPONENTS:
+- Pages: Courts.tsx, MyBookings.tsx, Payment.tsx
+- Components: CourtCard.tsx, BookingForm.tsx, BookingCard.tsx
+- Responsive design dengan Tailwind CSS
+- Mobile-friendly UI/UX
+
+✅ FITUR:
+1. Listing lapangan dengan harga per jam
+2. Booking dengan jadwal per jam
+3. Manajemen booking (lihat, batalkan)
+4. Multiple payment methods
+5. Responsive untuk mobile & desktop
+6. Modern UI/UX dengan Tailwind CSS
+
+=====================================
+SETUP INSTRUCTIONS
+=====================================
+
+Windows:
+  1. Run: setup.bat
+
+Bash/Linux/Mac:
+  1. chmod +x setup.sh
+  2. Run: ./setup.sh
+
+Manual Setup:
+  1. composer install
+  2. cp .env.example .env
+  3. php artisan key:generate
+  4. php artisan migrate:fresh --seed
+  5. npm install
+  6. npm run build
+
+Development:
+  Terminal 1: php artisan serve
+  Terminal 2: npm run dev
+  Terminal 3 (optional): php artisan inertia:start-ssr
+
+Access: http://localhost:8000
+
+=====================================
+API ENDPOINTS
+=====================================
+
+PUBLIC:
+  GET  /api/courts                          (List all courts)
+  GET  /api/courts/{id}?date=YYYY-MM-DD    (Court details with slots)
+  GET  /api/courts/{id}/available-dates    (Available dates)
+
+PROTECTED (Auth Required):
+  GET    /api/bookings                      (User's bookings)
+  POST   /api/bookings                      (Create booking)
+  GET    /api/bookings/{id}                 (Booking details)
+  POST   /api/bookings/{id}/cancel          (Cancel booking)
+  POST   /api/bookings/{id}/confirm         (Confirm booking)
+
+  POST   /api/payments                      (Create payment)
+  GET    /api/payments/{id}                 (Payment details)
+  GET    /api/user/payments                 (User's payments)
+  POST   /api/payments/{id}/refund          (Request refund)
+
+=====================================
+PAGES
+=====================================
+
+  /                           (Home/Welcome)
+  /courts                     (Court listing & booking form)
+  /bookings                   (My bookings)
+  /bookings/{id}/payment      (Payment page)
+  /dashboard                  (Dashboard - after login)
+
+=====================================
+FILE STRUCTURE CREATED
+=====================================
+
+database/migrations/:
+  - 2025_06_27_000001_create_courts_table.php
+  - 2025_06_27_000002_create_time_slots_table.php
+  - 2025_06_27_000003_create_bookings_table.php
+  - 2025_06_27_000004_create_payments_table.php
+
+app/Models/:
+  - Court.php
+  - TimeSlot.php
+  - Booking.php
+  - Payment.php
+
+app/Http/Controllers/:
+  - CourtController.php
+  - BookingController.php
+  - PaymentController.php
+
+app/Policies/:
+  - BookingPolicy.php
+  - PaymentPolicy.php
+
+resources/js/pages/:
+  - Courts.tsx
+  - MyBookings.tsx
+  - Payment.tsx
+
+resources/js/components/:
+  - CourtCard.tsx
+  - BookingForm.tsx
+  - BookingCard.tsx
+
+Documentation:
+  - BADMINTON_APP_SETUP.md
+  - setup.bat (Windows setup script)
+  - setup.sh (Linux/Mac setup script)
+
+=====================================
+NEXT STEPS
+=====================================
+
+1. Run setup script (setup.bat atau setup.sh)
+2. Access http://localhost:8000
+3. Verify database migrations: php artisan migrate:status
+4. Check API: curl http://localhost:8000/api/courts
+5. Test in browser: http://localhost:8000/courts
+
+=====================================
+FUTURE ENHANCEMENTS
+=====================================
+
+Optional:
+- Admin dashboard untuk manage lapangan
+- Email notifications
+- SMS reminders
+- Rating & review system
+- Promo/discount codes
+- Recurring bookings
+- Team booking features
+- Payment gateway integration (Midtrans, Stripe, etc)
+
+=====================================
